@@ -1,5 +1,5 @@
 function M = adtranspose(M)
-%  ADTRANSPOSE The anti-diagonal transpose
+%  ADTRANSPOSE  The anti-diagonal transpose
 %
 %    B = ADTRANSPOSE(A) computes the transpose of A about the anti-diagonal.
 %
