@@ -52,8 +52,6 @@ end
 
 
 
-
-
 function [alpha, collision] = collCheckBernR(cpts1, cpts2, alpha,...
     deg1, deg2, epsilon, minDist, count)
 %collCheckBernR Recursive call for collCheckBernR
