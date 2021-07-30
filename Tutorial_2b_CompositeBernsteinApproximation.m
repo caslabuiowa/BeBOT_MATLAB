@@ -11,7 +11,7 @@ close all
 % Bernstein Approximation of smooth functions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-N = 12; % Order of approximation (N+1 nodes)
+N = 40; % Order of approximation (N+1 nodes)
 
 %% Define the following functions
 T = 12;
@@ -49,7 +49,8 @@ intu2 = sqrt(T^2+1)-1;
 
 
 %% Compute Bern approx nodes/weights/Diff
-[tnodes,w,D] = BeBOT(N,T)
+tknots = linspace(0,T,4);
+[tnodes,w,D] = CompBeBOT(N,tknots);
 
 
 %% Plot the function at the equidistant nodes
@@ -61,9 +62,9 @@ figure(2)
 plot(tnodes,u2nodes,'o','Linewidth',4); 
 
 
-%% Compute the Bernstein Polynomial at these nodes
-u1N = BernsteinPoly(u1nodes,t);
-u2N = BernsteinPoly(u2nodes,t);
+%% Compute the Composite Bernstein Polynomial at these nodes
+u1N = CompositeBernsteinPoly(u1nodes,tknots,t);
+u2N = CompositeBernsteinPoly(u2nodes,tknots,t);
 figure(1)
 plot(t,u1N,'Linewidth',2,'Color','b'); 
 figure(2)
@@ -73,8 +74,8 @@ plot(t,u2N,'Linewidth',2,'Color','b');
 %% Compute the derivative of Bernstein poly
 u1nodes_dot = u1nodes*D;
 u2nodes_dot = u2nodes*D;
-u1Ndot = BernsteinPoly(u1nodes_dot,t);
-u2Ndot = BernsteinPoly(u2nodes_dot,t);
+u1Ndot = CompositeBernsteinPoly(u1nodes_dot,tknots,t);
+u2Ndot = CompositeBernsteinPoly(u2nodes_dot,tknots,t);
 figure(3)
 plot(tnodes,u1nodes_dot,'o','Linewidth',4);
 plot(t,u1Ndot,'Linewidth',2,'Color','b'); 
@@ -93,9 +94,9 @@ intu2;
 
 % Compare the integral of Bernstein approximation for different N
 i = 0;
-for N = 5:200
+for N = 5:20
     i = i + 1;
-    [tnodes,w,~] = BeBOT(N,T)
+    [tnodes,w,~] = CompBeBOT(N,tknots)
     u1nodes = u1(tnodes);
     u2nodes = u2(tnodes);
     intu1N(i) = u1nodes*w;
@@ -128,7 +129,7 @@ grid on
 % Bernstein Approximation of non-smooth functions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-N = 15; % Order of approximation (N+1 nodes)
+N = 4; % Order of approximation (N+1 nodes)
 
 
 %% Define the following function
@@ -143,16 +144,17 @@ set(gca,'fontsize', 26);
 grid on
 
 %% Compute Bern approx nodes/weights/Diff
-[tnodes,~,~] = BeBOT(N,T);
+tknots = linspace(0,T,5);
+[tnodes,~,~] = CompBeBOT(N,tknots);
 
 %% Plot the function at the equidistant nodes
 figure(7)
 unodes = u(tnodes);
-plot(tnodes,unodes,'o','Linewidth',4);
+plot(tnodes,unodes,'o','Linewidth',4); hold on
 
 
 %% Compute the Bernstein Polynomial at these nodes
-uN = BernsteinPoly(unodes,t);
+uN = CompositeBernsteinPoly(unodes,tknots,t);
 figure(7)
 plot(t,uN,'Linewidth',2,'Color','b'); 
 

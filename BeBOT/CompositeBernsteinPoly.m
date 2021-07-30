@@ -1,4 +1,4 @@
-function  poly_t  = CompositeBernsteinPoly(Cp,tnodes,time)
+function  poly_t  = CompositeBernsteinPoly(Cp,tknots,time)
 
 % INPUTS:
 % 
@@ -9,20 +9,20 @@ function  poly_t  = CompositeBernsteinPoly(Cp,tnodes,time)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-M = length(tnodes)-1;
-[dim, N] = size(Cp);
-N = floor((N-1)/M);
+M = length(tknots)-1;
+[dim, totN] = size(Cp);
+N = totN/M - 1;
 
 poly_t = zeros(dim,length(time));
 
 for i = 1 : M
     for k = 1 : length(time)   
-        if time(k) >= tnodes(i) & time(k) <= tnodes(i+1) 
+        if time(k) >= tknots(i) && time(k) <= tknots(i+1) 
             t = time(k);
             if i < M
-                poly_t(:,k) = BernsteinPoly(Cp((i-1)*N+1:i*N+1),t,tnodes(i),tnodes(i+1));
+                poly_t(:,k) = BernsteinPoly(Cp((i-1)*N+i:i*N+i),t,tknots(i),tknots(i+1));
             else
-                poly_t(:,k) = BernsteinPoly(Cp((i-1)*N+1:end),t,tnodes(i),tnodes(i+1));
+                poly_t(:,k) = BernsteinPoly(Cp((i-1)*N+i:end),t,tknots(i),tknots(i+1));
             end
         end
     end
