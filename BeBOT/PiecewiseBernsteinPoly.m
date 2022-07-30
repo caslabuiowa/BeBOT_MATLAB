@@ -1,4 +1,4 @@
-function  poly_t  = CompositeBernsteinPoly(Cp,tknots,time)
+function  poly_t  = PiecewiseBernsteinPoly(Cp,tknots,time)
 
 % INPUTS:
 % 
@@ -20,9 +20,9 @@ for i = 1 : M
         if time(k) >= tknots(i) && time(k) <= tknots(i+1) 
             t = time(k);
             if i < M
-                poly_t(:,k) = BernsteinPoly(Cp((i-1)*N+i:i*N+i),t,tknots(i),tknots(i+1));
+                poly_t(:,k) = BernsteinPoly(Cp(:,(i-1)*N+i:i*N+i),t,tknots(i),tknots(i+1));
             else
-                poly_t(:,k) = BernsteinPoly(Cp((i-1)*N+i:end),t,tknots(i),tknots(i+1));
+                poly_t(:,k) = BernsteinPoly(Cp(:,(i-1)*N+i:end),t,tknots(i),tknots(i+1));
             end
         end
     end
@@ -30,6 +30,7 @@ end
 
 
 end
+
 
 
 
