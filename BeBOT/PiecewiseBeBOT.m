@@ -1,4 +1,4 @@
-function [tnodes,w,Dm] = compBeBOT(N,tknots)
+function [tnodes,w,Dm] = PiecewiseBeBOT(N,tknots)
 % write description
 % N is the order of 1 Bernstein poly
 % tknots include first and final time
@@ -26,4 +26,3 @@ end
 w = T/((N+1)*M)*ones(((N+1)*M),1);
 
 end
-
