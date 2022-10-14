@@ -1,6 +1,9 @@
 clear all
 close all
 
+
+
+
 % Cp = [0 1 2 0 -1 0 4 6 2 2 2 2];
 % tknots = [0 2 5 6]'
 % N = 3;
@@ -9,6 +12,9 @@ close all
 % CoBf = CompositeBernsteinPoly(Cp,tknots,t);
 % plot(t,CoBf,'Color','g'); hold on
 % plot(tnodes,Cp,'b*')
+
+
+
 
 f = @(t) 1./(sqrt(1+(12-t).^2));
 t = 0:0.01:12
