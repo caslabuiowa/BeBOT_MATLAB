@@ -15,7 +15,13 @@ function  poly_t  = BernsteinPoly(Cp,t,t0,tf)
 
 
 
-[~, N] = size(Cp);
+[M, N] = size(Cp);
+
+if N == 1 && M > 1
+    Cp = Cp';
+    N = M;
+end
+
 N = N-1;
 
 if length(t) > 1
