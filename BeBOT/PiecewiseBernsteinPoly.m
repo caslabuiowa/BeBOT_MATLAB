@@ -11,6 +11,10 @@ function  poly_t  = PiecewiseBernsteinPoly(Cp,tknots,time)
 
 M = length(tknots)-1;
 [dim, totN] = size(Cp);
+if totN == 1
+    Cp = Cp';
+end
+[dim, totN] = size(Cp);
 N = totN/M - 1;
 
 poly_t = zeros(dim,length(time));
