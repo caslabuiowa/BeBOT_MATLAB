@@ -1,8 +1,8 @@
 clear all
 close all
 
-x = [1 2 3 4 5];
-y = [1 2 3 4 5];
+x = [1 2 3 4 5 6 7];
+y = [1 2 3 4 5 6 7];
 r_trn = linspace(1,length(x),length(x));
 tN = linspace(0,1,length(x));
 time = linspace(0,1,1000);
