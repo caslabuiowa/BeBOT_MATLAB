@@ -8,7 +8,10 @@ tN = linspace(0,1,length(x));
 time = linspace(0,1,1000);
 
 plot(BernsteinPoly(x,time),BernsteinPoly(y,time),'Linewidth',2,'Color','b'); hold on
-plot(x, y, 'ok', 'MarkerSize', 10, 'Color','b'); grid on; hold on
+plot(x, y, 'ok', 'MarkerSize', 10, 'Color','b');
+plot([x(1); x(2)], [y(1); y(2)], '--','Color','r')
+plot([x(end-1); x(end)], [y(end-1); y(end)], '--','Color','r')
+grid on; 
 strValues = strtrim(cellstr(num2str(r_trn(:))));
 text(x,y,strValues, 'HorizontalAlignment','center', 'VerticalAlignment','middle', 'fontsize', 8 );
 axis equal
@@ -32,7 +35,10 @@ while 1
             x(i) = p(1); y(i) = p(2); 
             
             plot(BernsteinPoly(x,time),BernsteinPoly(y,time),'Linewidth',2,'Color','b'); hold on
-            plot(x, y, 'ok', 'MarkerSize', 10, 'Color','b'); grid on; hold on
+            plot(x, y, 'ok', 'MarkerSize', 10, 'Color','b'); 
+            plot([x(1); x(2)], [y(1); y(2)], '--','Color','r')
+            plot([x(end-1); x(end)], [y(end-1); y(end)], '--','Color','r')
+            grid on;
             strValues = strtrim(cellstr(num2str(r_trn(:))));
             text(x,y,strValues, 'HorizontalAlignment','center', 'VerticalAlignment','middle', 'fontsize', 8 );
             axis equal
