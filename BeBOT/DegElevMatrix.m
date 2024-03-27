@@ -1,28 +1,31 @@
-function E = DegElevMatrix(N,M)
-% INPUT: N: Order of the curve to be elevated; M: order to which it has to
-% be elevated;
-% OUTPUT: Elevation matrix E. 
-% HOW TO USE: Given a Bernstein poly of order N with control points cpN (row vector),
+function E = DegElevMatrix(N, M)
+% INPUT: 
+% N: Order of the curve to be elevated.
+% M: Order to which it has to be elevated.
+% OUTPUT: 
+% Elevation matrix E.
+% HOW TO USE: 
+% Given a Bernstein poly of order N with control points cpN (row vector),
 % the control points of the Bernstein poly degree elevated to order N,
-% namely cpM (row vector) is given by cpM = cpN*E;
+% namely cpM (row vector), is given by cpM = cpN*E;
 
-% Written by: Venanzio Cichella       
+% Preallocate E with zeros for efficiency
+E = zeros(M+1, N+1);
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Precompute all necessary binomial coefficients
+binomN = arrayfun(@(k) nchoosek_mod(N, k), 0:N);
+binomM = arrayfun(@(k) nchoosek_mod(M, k), 0:M);
+binomR = arrayfun(@(k) nchoosek_mod(M-N, k), 0:(M-N));
 
-
-
-r = M-N;
-
-for i = 1:1:N+1
-    for j = 1:1:r+1
-         E(i+j-1,i) = nchoosek_mod(N,i-1)*nchoosek_mod(r,j-1)/nchoosek_mod(M,i+j-2);
+% Vectorized filling of E
+for i = 1:N+1
+    for j = max(1, i):min(M+1, i+M-N)
+        E(j,i) = binomN(i) * binomR(j-i+1) / binomM(j);
     end
 end
 
+% Transpose E to match the original function's output
 E = E';
-
-
 end
 
 
