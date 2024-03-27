@@ -1,4 +1,4 @@
-function E = DegElevMatrixmod(N, M)
+function E = DegElevMatrix(N, M)
 % INPUT: 
 % N: Order of the curve to be elevated.
 % M: Order to which it has to be elevated.
