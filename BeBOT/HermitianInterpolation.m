@@ -1,5 +1,8 @@
 function [Cp, Transf] = HermitianInterpolation(x,tf)
 
+%% x is a vector of initial/final conditions [x0 x0dot x0ddot ... xfddot xfdot xf]
+% Cp is the Bernstein polynomials that satisfies these boundary conditions
+
 if isrow(x)
     x = x';
 end
