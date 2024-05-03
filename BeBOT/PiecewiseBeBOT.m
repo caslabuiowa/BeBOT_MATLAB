@@ -33,9 +33,9 @@ for i = 1:M
     Dm(DmBlockStart:DmBlockEnd, DmBlockStart:DmBlockEnd) = tempDm;
 end
 
-% Preallocate and compute weights
-w = repmat((tknots(2:end) - tknots(1:end-1))' / (N + 1), N + 1, 1);
-w = reshape(w, M * (N + 1), 1);
+% Compute weights
+w = (tknots(2:end) - tknots(1:end-1)) / (N + 1);
+w = repelem(w, N + 1);
 
 end
 
