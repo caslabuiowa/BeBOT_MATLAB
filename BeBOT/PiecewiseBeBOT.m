@@ -35,7 +35,7 @@ end
 
 % Compute weights
 w = (tknots(2:end) - tknots(1:end-1)) / (N + 1);
-w = repelem(w, N + 1);
+w = repelem(w, N + 1)';
 
 end
 
