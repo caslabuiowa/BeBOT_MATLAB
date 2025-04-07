@@ -136,9 +136,9 @@ plot(t,PiecewiseBernsteinPoly(u',tknots,t));
 %% Cost
 function J = costfun(x,CONSTANTS)
 %COSTFUN Summary of this function goes here
-tf = x(end);
+    tf = x(end);
 
-J = tf;
+    J = tf;
 end
 
 
